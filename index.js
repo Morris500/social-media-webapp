@@ -7,7 +7,10 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
+import jwt from "jsonwebtoken"
 import { fileURLToPath } from "url";
+import {register}  from "./server/controllers/auth.js";
+import authRoutes from "./routes/auth.js"
 
 // configuration middleware
 const __filename = fileURLToPath(import.meta.url);
@@ -38,13 +41,23 @@ const upload = multer({ storage });
 
 //MONGOOSE SETUP
 try {
-const DB = await mongoose.connect(process.env.MONGO_URL)
+const DB = await mongoose.connect(process.env.MONGO_URL, {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true
+})
 console.log('DB connected');
    
 } catch (error) {
  console.log(`ERROR connecting to DB ${error}`);
     
 }
+
+app.get("auth/register", upload.single('picture'), register );
+
+//ROUTES
+app.use("/auth", authRoutes)
+
+
 
 
 app.listen(port, ()=> {console.log(`sever connected at port ${port}`);
