@@ -10,7 +10,8 @@ import path from "path";
 import jwt from "jsonwebtoken"
 import { fileURLToPath } from "url";
 import {register}  from "./server/controllers/auth.js";
-import authRoutes from "./routes/auth.js"
+import authRoutes from "./routes/auth.js";
+import userRoute from './routes/users.js';
 
 // configuration middleware
 const __filename = fileURLToPath(import.meta.url);
@@ -55,7 +56,8 @@ console.log('DB connected');
 app.get("auth/register", upload.single('picture'), register );
 
 //ROUTES
-app.use("/auth", authRoutes)
+app.use("/auth", authRoutes);
+app.use('/users')
 
 
 

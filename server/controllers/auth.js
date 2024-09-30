@@ -29,4 +29,26 @@ res.status(201).json(savedUser);
     }
 }
 
-export {register} ;
+//LOGGING IN 
+    const login = async (req, res, ) => {
+        try {
+            const {email, password} = req.body;
+            const user = await User.findOne({email: email});
+            console.log(user);
+            
+            if (!user){
+                res.status(404).json({msg: "User does not exit"})
+            }
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                res.status(400).json({msg: "Invalid Credential" });
+            }
+            const token = jwt.sign({id: user._id}, process.env.SECRET)
+            delete user.password;
+            res.sattus(200).json({token, user});
+        } catch (error) {
+         res.status(500).json({error: error.message});   
+        }
+    }
+
+export {register, login} ;
