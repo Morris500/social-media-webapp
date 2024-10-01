@@ -12,7 +12,8 @@ const getUser = async (req, res) => {
 }
 
 const getUserFriends = async (req, res) => {
-    const {id} = req.params;
+    try {
+        const {id} = req.params;
     const user = await User.findById(id);
 
     const friends = await Promise.all(
@@ -23,5 +24,24 @@ const getUserFriends = async (req, res) => {
             return {_id, firstname, lastname, occupation, location, picturePath }
         }
     )
+res.status(200).json({formattedFriends});  
 
-};
+    } catch (error) {
+       res.status(404).json({message: error}) 
+    }
+}
+
+// update
+const addRemoveFreind = async (req, res) => {
+    try {
+        const {id, friendId} = req.params;
+        const user= await User.findById(idd);
+        const friend =await User.findById(friendId);
+
+         if (user.friends.includes(friendId)) {
+            user.friends = user.friends.filter((id) => id !== friendId);
+         }
+    } catch (error) {
+        
+    }
+}
