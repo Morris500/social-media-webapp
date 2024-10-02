@@ -12,6 +12,10 @@ import { fileURLToPath } from "url";
 import {register}  from "./server/controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoute from './routes/users.js';
+import {postRoute} from './server/routes/post.js'
+import { verifytoken } from "./server/middleware/auth.js";
+import {createpost} from './server/controllers/posts.js'
+
 
 // configuration middleware
 const __filename = fileURLToPath(import.meta.url);
@@ -53,11 +57,14 @@ console.log('DB connected');
     
 }
 
-app.get("auth/register", upload.single('picture'), register );
+app.post("auth/register", upload.single('picture'), register );
+app.post('/posts', verifytoken, upload.single('picture'), createpost)
+
 
 //ROUTES
 app.use("/auth", authRoutes);
-app.use('/users')
+app.use('/users', userRoute);
+app.use('/posts', postRoute)
 
 
 
