@@ -10,11 +10,11 @@ import path from "path";
 import jwt from "jsonwebtoken"
 import { fileURLToPath } from "url";
 import {register}  from "./server/controllers/auth.js";
-import authRoutes from "./routes/auth.js";
-import userRoute from './routes/users.js';
-import {postRoute} from './server/routes/post.js'
+import authRoutes from "./server/routes/auth.js";
+import userRoute from './server/routes/users.js';
+import postRoute from './server/routes/posts.js';
 import { verifytoken } from "./server/middleware/auth.js";
-import {createpost} from './server/controllers/posts.js'
+import {Createpost} from './server/controllers/posts.js'
 
 
 // configuration middleware
@@ -58,7 +58,7 @@ console.log('DB connected');
 }
 
 app.post("auth/register", upload.single('picture'), register );
-app.post('/posts', verifytoken, upload.single('picture'), createpost)
+app.post('/posts', verifytoken, upload.single('picture'), Createpost)
 
 
 //ROUTES

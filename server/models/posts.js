@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema(
 {
     userId: {
-        typeof: String,
+        type: String,
         required: true
     },
     firstName:{
-        typeof: String,
+        type: String,
         required: true
     },
     lastName:{
-        typeof: String,
+        type: String,
         required: true
     },
     location: String,
@@ -24,7 +24,7 @@ const postSchema = new Schema(
             of: Boolean
         },
        comments:{
-        typeof: Array,
+        type: Array,
         default: []
        },
 },
@@ -32,4 +32,4 @@ const postSchema = new Schema(
 );
  const Post = mongoose.model("post", postSchema);
 
- export default Post;
+ export default Post
