@@ -15,7 +15,8 @@ import userRoute from './server/routes/users.js';
 import postRoute from './server/routes/posts.js';
 import { verifytoken } from "./server/middleware/auth.js";
 import {Createpost} from './server/controllers/posts.js'
-
+import User from "./server/models/User.js";
+import Post from "./server/models/posts.js";
 
 // configuration middleware
 const __filename = fileURLToPath(import.meta.url);
