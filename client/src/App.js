@@ -1,12 +1,13 @@
-import {BrowserRoute, Navigate, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Navigate, Routes, Route} from 'react-router-dom';
 import Homepage from './scenes/homepage';
 import Loginpage from './scenes/loginpage';
 import Profilepage from './scenes/profilepage';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import {createTheme, CssBaseline} from '@mui/material/styles';
+import {ThemeProvider, CssBaseline } from '@mui/material';
+import {createTheme} from '@mui/material/styles';
 import { themeSettings } from './theme';
-import { ThemeProvider } from '@emotion/react';
+
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   
   return (
     <div className="App">
-      <BrowserRoute>
+      <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
       <Routes>
@@ -24,7 +25,7 @@ function App() {
         <Route path='/Profile/:userId' element={<Profilepage/>} />
       </Routes>
       </ThemeProvider>
-      </BrowserRoute>
+      </BrowserRouter>
     </div>
   );
 }

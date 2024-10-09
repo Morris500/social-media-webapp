@@ -17,6 +17,8 @@ import { verifytoken } from "./server/middleware/auth.js";
 import {Createpost} from './server/controllers/posts.js'
 import User from "./server/models/User.js";
 import Post from "./server/models/posts.js";
+import {users, posts} from './server/data/index.js';
+
 
 // configuration middleware
 const __filename = fileURLToPath(import.meta.url);
@@ -52,6 +54,8 @@ const DB = await mongoose.connect(process.env.MONGO_URL, {
     // useUnifiedTopology: true
 })
 console.log('DB connected');
+// User.insertMany(users);
+// Post.insertMany(posts);
    
 } catch (error) {
  console.log(`ERROR connecting to DB ${error}`);
@@ -71,4 +75,4 @@ app.use('/posts', postRoute)
 
 
 app.listen(port, ()=> {console.log(`sever connected at port ${port}`);
-})
+}) 
