@@ -1,9 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Navbar from '../navbar';
+import Form from './Form'
+import { Box, Typography, useMediaQuery } from '@mui/material';
 
 const Loginpage = () => {
+  const theme = useTheme();
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   return (
-    <div>Loginpage</div>
-  )
+  <Box>
+  <Navbar/>
+    <box width='100%' backgroundColor={ThemeContext.palette.background.alt} p='1rem 6%' textAlign='center'>
+      <Typography fontWeight='bold' fontSize='32px' color='primary'>
+        Sociopedia
+      </Typography>
+    </box>
+    <Box width={isNonMobileScreens ? '50%' : '93%'} p='2rem' m='2rem  auto' borderRadius='1.5rem' backgroundColor={theme.palette.background.alt}>
+
+    </Box>
+    </Box>)
 }
 
 export default Loginpage
