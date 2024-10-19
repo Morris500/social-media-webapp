@@ -34,3 +34,29 @@ const initalValueRegister = {
     occupayion: '', 
     picture: '',
 }
+
+const initalValueLogin = {
+    email: '',
+    password: '',
+};
+
+function Form (){
+    const [pageType, setpageType] = useState('login');
+    const {palette} = useTheme();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isNonMobile = useMediaQuery('(mkin-width:600px)');
+    const isLogin = pageType === 'login';
+    const isRegister = pageType === 'register';
+
+    const handelFormSubmit = async (value, onsubmitProps) => {};
+    return (<formik onSubmit={handelFormSubmit} 
+    initialValues={isLogin ? initalValueLogin : initalValueRegister}
+    validationSchema={isLogin ? loginSchema : registerSchema}
+    >
+        {({values, errors, touched, handelchange, handelBlur, handelSubmit, setFieldValue, resetForm, }) => (<form onSubmit={handelSubmit})}
+
+        </formik> )
+}
+
+export default Form;
