@@ -49,8 +49,59 @@ function Form (){
     const isLogin = pageType === 'login';
     const isRegister = pageType === 'register';
 
-    const handelFormSubmit = async (value, onsubmitProps) => {};
-    return (<formik onSubmit={handelFormSubmit} 
+    async function register(values, onsubmitProps) {
+        //this allows us to send form info with image
+        const formData = new FormData();
+        for (let value in values) {
+            formData.append(value, values[value]);
+        }
+        formData.append('picturePath',values.picture.name);
+
+        const saveUserResponse = await fetch(
+            "http://localhost:3001/auth/register", 
+            {
+                method: 'POST',
+                body: formData,
+            }
+        );
+        const saveUser = await savedUserResponse.json();
+        onsubmitProps.resetForm();
+     
+    if (savedUser){
+        setpageType("login");
+    }
+    }; 
+
+    async function login(values, onsubmitProps) {
+        //this allows us to send form info with image
+        const formData = new FormData();
+        for (let value in values) {
+            formData.append(value, values[value]);
+        }
+        formData.append('picturePath',values.picture.name);
+
+        const saveUserResponse = await fetch(
+            "http://localhost:3001/auth/register", 
+            {
+                method: 'POST',
+                body: formData,
+            }
+        );
+        const saveUser = await savedUserResponse.json();
+        onsubmitProps.resetForm();
+     
+    if (savedUser){
+        setpageType("login");
+    }
+
+    }; 
+
+    const handelFormSubmit = async (values, onsubmitProps) => {
+        if (isLogin) {await login(values, onsubmitProps)}
+        if (isRegister) {await register(values, onsubmitProps)}
+        };
+    return (
+    <formik onSubmit={handelFormSubmit} 
     initialValues={isLogin ? initalValueLogin : initalValueRegister}
     validationSchema={isLogin ? loginSchema : registerSchema}
     >
@@ -80,12 +131,35 @@ function Form (){
                                 {({getRootProps, getInputProps}) => (
                                     <Box {...getRootProps()} border={'2px dashed ${palette.primary.main}'} p='1rem' sx={{'&:hover': {cursor: 'pointer'}}}>
                                         <input {...getInputProps()} />
+                                        {!values.picture ? (<p>Add Picture Here</p> ) : (
+                                            <FlexBetween>
+                                                <Typography>{values.picture.name}</Typography>
+                                                <EditOutlinedIcon />
+                                            </FlexBetween>
+                                        ) }
                                     </Box>
                                 )}
                             </Dropzone>
                         </Box>
                         </>
                     )}
+                    <TextField label='Email' onBlur={handelBlur} onChange={handelchange} value={values.email} name='email' error={Boolean(touched.email) && Boolean(errors.email)} helperText={touched.email && errors.email} sx={{gridColumn: 'span 4'}} 
+                        />
+                        <TextField label='Password' type='password' onBlur={handelBlur} onChange={handelchange} value={values.password} name='password' error={Boolean(touched.password) && Boolean(errors.password)}
+                        helperText={touched.password && errors.password} sx={{gridColumn: 'span 4'}} 
+                        />
+                </Box>
+                {/* BUTTONS */}
+                <Box>
+                    <Button fullwidth type="submit" sx={{m:'2rem 0', p: '1rem', backgroundColor: palette.primary.main, color: palette.background.alt, '&:hover':{color: palette.primary.main},}}>
+                        {isLogin ? 'LOGIN' : 'REGISTER'}
+                    </Button>
+                    <Typography onClick={() =>{
+                        setpageType(isLogin ? 'register' : 'login');
+                        resetForm();
+                    }} sx={{textDecoration: 'underline', color: palette.primary.main, '&:hover': {cursor: 'pointer', color: palette.primary.light,},}} >
+                        {isLogin ? "Don't have an account? Sign Up here." : "Already have  an account? Login here."}
+                    </Typography>
                 </Box>
             </form>
     )}
