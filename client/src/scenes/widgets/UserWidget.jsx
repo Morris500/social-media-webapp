@@ -48,7 +48,9 @@ const {firstName, lastName, location, occupation, viewedProfile, impression, fri
                     </Typography>
                     <Typography  color={medium}>{friends.length} friends</Typography>
             </Box>
-            <ManageAccountsOutlined/>
+            
+           </FlexBetween>
+           <ManageAccountsOutlined/>
            </FlexBetween>
            <Divider />
 
@@ -64,6 +66,8 @@ const {firstName, lastName, location, occupation, viewedProfile, impression, fri
             </Box>
            </Box>
 
+           <Divider />
+
            {/* third row */}
            <Box p='1rem 0'>
             <FlexBetween mb= '0.5rem'>
@@ -76,9 +80,37 @@ const {firstName, lastName, location, occupation, viewedProfile, impression, fri
             </FlexBetween>
            </Box> 
 
-           {/*  */}
+           <Divider />
+           
+           {/* fourth row */}
+           <Box p='1rem 0'>
+            <Typography fontSize='1rem' color={main} fontWeight='500' mb='1rem'>Social Profiles</Typography>
+            <FlexBetween gap='1rem' mb='0.5rem'>
+                <FlexBetween gap='1rem'>
+                    <img src="../assert/twitter.png" alt="twwiter" />
+                    <Box>
+                        <Typography color={main} fontweight='500'>Twitter</Typography>
+                        <Typography color={medium} >Social Network</Typography>
+                    </Box>
+                </FlexBetween>
+                <EditOutlined sx={{color: main}} />
+            </FlexBetween>
+
+            <FlexBetween gap='1rem' >
+                <FlexBetween gap='1rem'>
+                    <img src="../assert/linkedin.png" alt="linkedin" />
+                    <Box>
+                        <Typography color={main} fontweight='500'>Linkedin</Typography>
+                        <Typography color={medium} >Networking platform</Typography>
+                    </Box>
+                </FlexBetween>
+                <EditOutlined sx={{color: main}} />
+            </FlexBetween>
+           </Box>
             
-     </FlexBetween>
+     
   </WidgetWrapper>
  )
 };
+
+export default UserWidget;

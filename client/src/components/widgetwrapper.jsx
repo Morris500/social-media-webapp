@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
-import { Style } from "@mui/icons-material";
+//import { Style } from "@mui/icons-material";
+import { styled } from "@mui/system";
 
 const WidgetWrapper = styled(Box)(({theme}) => ({
     padding: '1.5rem 1.5rem 1.5rem',
