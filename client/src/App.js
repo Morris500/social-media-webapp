@@ -21,8 +21,8 @@ function App() {
         <CssBaseline />
       <Routes>
         <Route path='/' element={<Loginpage/>} />
-        <Route path='/Home' element={isAUth ? <Homepage/> : <Navigate to='/' />} />
-        <Route path='/Profile/:userId' element={isAUth ?<Profilepage/> :<Navigate to='/' />} />
+        <Route path='/Home' /*element={isAUth ? <Homepage/> : <Navigate to='/' />} */ element={<Homepage/>} />
+        <Route path='/Profile/:userId' /*element={isAUth ?<Profilepage/> :<Navigate to='/'  />} */ element={<Profilepage/>} />
       </Routes>
       </ThemeProvider>
       </BrowserRouter>

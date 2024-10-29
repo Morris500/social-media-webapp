@@ -56,6 +56,7 @@ function Form (){
             formData.append(value, values[value]);
         }
         formData.append('picturePath',values.picture.name);
+console.log(formData);
 
         const savedUserResponse = await fetch(
             "http://localhost:3002/auth/register", 
@@ -94,8 +95,8 @@ function Form (){
     }
     
     const handelFormSubmit = async (values, onsubmitProps) => {
-        if (isLogin) {await login(values, onsubmitProps)}
-        if (isRegister) {await register(values, onsubmitProps)}
+        if (isLogin) await login(values, onsubmitProps)
+        if (isRegister) await register(values, onsubmitProps)
         };
     return (
     <Formik onSubmit={handelFormSubmit} 
