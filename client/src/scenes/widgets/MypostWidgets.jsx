@@ -123,9 +123,10 @@ import React from 'react'
                     color: palette.background.alt,
                     backgroundColor: palette.primary.main,
                     borderRadius: "3rem"
-                 }}>
+                 }}   >
                     POST  
                 </Button>
+                
 
         </FlexBetween>
     </WidgetWrapper>
