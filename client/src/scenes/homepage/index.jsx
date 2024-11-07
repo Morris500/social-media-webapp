@@ -5,6 +5,7 @@ import UserWidget from '../widgets/UserWidget';
 import { useSelector } from 'react-redux';
 import MypostWidgets from '../widgets/MypostWidgets';
 import { PostsWidget } from '../widgets/PostsWidget';
+import AdvertWidget from '../widgets/AdvertWidget';
 
 
 const Homepage = () => {
@@ -27,7 +28,10 @@ const Homepage = () => {
         <MypostWidgets picturePath='picturePath' />
         <PostsWidget userId={_id} />
       </Box>
-      {isNonMobileScreens && <Box flexBasis='26%'></Box> }
+      {isNonMobileScreens && <Box flexBasis='26%'>
+        <AdvertWidget />
+        <Box m="2rem 0"/>
+      </Box> }
     </Box>
    
     </Box>
