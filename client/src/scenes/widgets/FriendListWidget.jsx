@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Friend from '../../components/Friend';
 import { setFriends } from '../../state';
 import FlexBetween from '../../components/flexBetween';
+import WidgetWrapper from '../../components/widgetwrapper';
 
 
-export const FriendListWidget = () => {
+const FriendListWidget = () => {
 
     const dispatch = useDispatch();
     const {palette} = useTheme();
@@ -27,6 +28,23 @@ export const FriendListWidget = () => {
         getFriends();
             },[]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <div>FriendListWidget</div>
+    <WidgetWrapper>
+        <Typography color={palette.neutral.dark} variant="h5" fontWeight="500" sx={{mb: "1.5rem"}}>
+            Friend List
+        </Typography>
+        <Box display='flex' flexDirection="column" gap="1.5rem">
+            {friends.map((friend)=> (
+            <Friend 
+            key={friend._id} 
+            friendId={friend._id}
+            name={`${friend.fristName} ${friend.lastName}`}
+            sbtitle={friend.occupation}
+            userPicturePath={friend.picturePath}
+           /> ) ) } 
+          
+           </Box>
+    </WidgetWrapper>
   )
 }
+
+export default FriendListWidget;
